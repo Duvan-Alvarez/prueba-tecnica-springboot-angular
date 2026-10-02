@@ -1,0 +1,3 @@
+package com.makers.loans.config;
+import com.makers.loans.entity.*; import com.makers.loans.repository.UserRepository; import org.springframework.boot.CommandLineRunner; import org.springframework.context.annotation.*; import org.springframework.security.crypto.password.PasswordEncoder;
+@Configuration public class DataInitializer { @Bean CommandLineRunner seed(UserRepository repo,PasswordEncoder encoder){return args->{if(!repo.existsByEmail("usuario@test.com")) repo.save(new User("usuario@test.com",encoder.encode("123"),Role.USER)); if(!repo.existsByEmail("admin@test.com")) repo.save(new User("admin@test.com",encoder.encode("123"),Role.ADMIN));};}}
